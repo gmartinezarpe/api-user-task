@@ -1,10 +1,20 @@
 generator client {
-    provider              = "prisma-client-js"
-    previewFeatures       = ["referentialIntegrity"]
+  provider        = "prisma-client-js"
+  previewFeatures = ["referentialIntegrity"]
 }
 
 datasource db {
-    provider               = "mysql"
-    url                    = env("DATABASE_URL")
-    referentialIntegrity   = "prisma"
+  provider             = "mysql"
+  url                  = env("DATABASE_URL")
+  referentialIntegrity = "prisma"
+}
+
+model Task {
+  id      Int     @id @default(autoincrement())
+  tittle  String  @db.VarChar(60)
+  content String  @db.VarChar(250)
+  done    Boolean @default(false)
+  userId  Int?
+
+  @@map("tasks")
 }

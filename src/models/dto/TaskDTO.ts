@@ -1,15 +1,16 @@
-interface BaseTaskDTO{
+export interface BaseTaskDTO{
   id?: number
   tittle: string
   content: string
+  done: boolean
 
   
- 
+
 }
 
 export interface TaskDTO extends BaseTaskDTO{
 id: number
-userid: number | null
+userId: number | null
 }
 
 export interface CreateTaskDTO extends BaseTaskDTO{

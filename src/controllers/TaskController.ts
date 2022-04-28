@@ -1,35 +1,27 @@
 import { Request, Response} from "express"
 import { CreateTaskDTO, TaskDTO, UpdateTaskDTO } from "../models/dto/TaskDTO"
+import TaskRepository from "../models/repositories/TaskRepository"
 import { createTaskSchema, updateTaskSchema } from "../models/validators/taskSchemas"
+
+
+
 
 export default class TaskController{
 public readonly getAll = async (_req: Request, res: Response) => {
-    const tasks: TaskDTO[] = [
-        {
-        id: 1,
-        tittle: 'hola',
-        content: 'prueba',
-        userid: 1
-        }
-        
-    ]
+    const repository = new TaskRepository(1)
+    const tasks: TaskDTO[] = await repository.findAll()
+   
     res.json(tasks)
 }
 
 public readonly getById = async (_req: Request, res: Response) => {
     const { id }= _req.params
-    const task: TaskDTO = {
-        id: parseInt(id),
-        tittle: 'hola',
-        content: 'prueba',
-        userid: 1
-
-        
-    }
+    const repository = new TaskRepository(1)
+    const task = await repository.findById(parseInt(id))
     res.json({task})
 
 }
-public readonly create = async (_req: Request, res: Response) => {
+public readonly create = async (_req: Request, res: Response) => { 
     const task = _req.body as CreateTaskDTO
     
     try{
@@ -41,11 +33,11 @@ res.status(400).json({message: error.message})
 return
     }
     
+    const repository = new TaskRepository(1)
+
+    const NewTask = await repository.create(task)
     
-    res.json({
-        id: 1,
-        ...task
-    })
+    res.json(NewTask)
 }
 
 public readonly update = async (_req: Request, res: Response) => {
@@ -61,14 +53,18 @@ res.status(400).json({message: error.message})
 return
     }
 
-    console.log(' esto debería editar', id, task)
+    const repository = new TaskRepository(1)
+    await repository.update(parseInt(id), task)
+
     res.sendStatus(204)
 }
 
 public readonly delete = async (_req: Request, res: Response) => {
     const { id } = _req.params
 
-    console.log('esto debería eliminar', id)
+    const repository = new TaskRepository(1)
+    await repository.delete(parseInt(id))
+    
     res.sendStatus(204)
 }
 
