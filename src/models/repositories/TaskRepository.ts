@@ -38,6 +38,8 @@ export default class TaskRepository {
         const NewTask = await prisma.task.create({
             data: {
                 ...task,
+                userId: this.userId
+
                 
             }
 
