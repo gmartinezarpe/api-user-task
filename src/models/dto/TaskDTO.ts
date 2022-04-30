@@ -3,7 +3,7 @@ export interface BaseTaskDTO{
   tittle: string
   content: string
   done: boolean
-
+  
   
 
 }

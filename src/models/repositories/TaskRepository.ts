@@ -42,7 +42,7 @@ export default class TaskRepository {
 
                 
             }
-
+            
         })
         return NewTask
     }

@@ -1,9 +1,11 @@
 import { Router } from "express";
 import TaskController from "../controllers/TaskController";
+import tokenValidator from "../middlewares/tokenValidators";
 
 const taskRoutes = Router()
 const controller = new TaskController()
 
+taskRoutes.get('/', tokenValidator(), controller.getAll)
 taskRoutes.get('/', controller.getAll)
 taskRoutes.get('/:id', controller.getById)
 taskRoutes.post('/', controller.create)
