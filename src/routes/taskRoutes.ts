@@ -1,6 +1,6 @@
-import { Router } from "express";
-import TaskController from "../controllers/TaskController";
-import tokenValidator from "../middlewares/tokenValidators";
+import { Router } from "express"
+import TaskController from "../controllers/TaskController"
+import tokenValidator from "../middlewares/tokenValidators"
 
 const taskRoutes = Router()
 const controller = new TaskController()

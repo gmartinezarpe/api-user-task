@@ -1,5 +1,5 @@
-import { PrismaClient } from "@prisma/client";
-import { CreateTaskDTO, TaskDTO, UpdateTaskDTO } from "../dto/TaskDTO";
+import { PrismaClient } from "@prisma/client"
+import { CreateTaskDTO, TaskDTO, UpdateTaskDTO } from "../dto/TaskDTO"
 
 const prisma = new PrismaClient()
 

@@ -1,5 +1,5 @@
-import { PrismaClient } from "@prisma/client";
-import { CreateUserDTO, UpdateUserDTO, UserDTO, LoginUserDTO } from "../dto/UserDTO";
+import { PrismaClient } from "@prisma/client"
+import { CreateUserDTO, UpdateUserDTO, UserDTO, LoginUserDTO } from "../dto/UserDTO"
 
  const prisma = new PrismaClient()
 

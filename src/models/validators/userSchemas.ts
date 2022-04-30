@@ -1,4 +1,4 @@
-import Joi from 'joi'
+import Joi from 'Joi'
 
 export const loginSchema = Joi.object().keys({
   email: Joi.string().email().required(),
