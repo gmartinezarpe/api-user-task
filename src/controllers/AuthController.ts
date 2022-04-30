@@ -1,9 +1,9 @@
-import { Request, Response } from "express"
-import bcrypt from 'bcryptjs'
-import { generateToken } from "../lib/jwt"
-import UserRepository from "../models/repositories/UserRepository"
-import { CreateUserDTO } from "../models/dto/UserDTO"
-import { loginSchema, registerSchema } from "../models/validators/userSchemas"
+import { Request, Response } from "express";
+import bcrypt from 'bcryptjs';
+import { generateToken } from "../lib/jwt";
+import UserRepository from "../models/repositories/UserRepository";
+import { CreateUserDTO } from "../models/dto/UserDTO";
+import { loginSchema, registerSchema } from "../models/validators/userSchemas";
 
 export default class AuthController {
   public readonly login = async (req: Request, res: Response) => {

@@ -1,8 +1,8 @@
-import { Request, Response} from "express"
-import { CreateTaskDTO, TaskDTO, UpdateTaskDTO } from "../models/dto/TaskDTO"
-import { UserTokenPayload } from "../models/dto/UserDTO"
-import TaskRepository from "../models/repositories/TaskRepository"
-import { createTaskSchema, updateTaskSchema } from "../models/validators/taskSchemas"
+import { Request, Response} from "express";
+import { CreateTaskDTO, TaskDTO, UpdateTaskDTO } from "../models/dto/TaskDTO";
+import { UserTokenPayload } from "../models/dto/UserDTO";
+import TaskRepository from "../models/repositories/TaskRepository";
+import { createTaskSchema, updateTaskSchema } from "../models/validators/taskSchemas";
 
 
 export default class TaskController{

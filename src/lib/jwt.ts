@@ -1,5 +1,5 @@
-import jwt from 'jsonwebtoken'
-import { UserDTO, UserTokenPayload } from '../models/dto/UserDTO'
+import jwt from 'jsonwebtoken';
+import { UserDTO, UserTokenPayload } from '../models/dto/UserDTO';
 
 const secret = process.env.JWT_SECRET || 'secret'
 

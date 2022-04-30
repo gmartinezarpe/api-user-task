@@ -1,5 +1,5 @@
-import { NextFunction, Request, Response } from "express"
-import { verifyToken } from "../lib/jwt"
+import { NextFunction, Request, Response } from "express";
+import { verifyToken } from "../lib/jwt";
 
 export default function tokenValidator() {
   return async function (req: Request, res: Response, next: NextFunction) {
