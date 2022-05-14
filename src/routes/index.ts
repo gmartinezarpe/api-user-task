@@ -10,4 +10,5 @@ const apiRoutes = Router()
 apiRoutes.use('/', healthRoutes)
 apiRoutes.use('/tasks', tokenValidator(), taskRoutes)
 apiRoutes.use('/auth',  authRoutes)
+apiRoutes.use('/users',  authRoutes)
 export default apiRoutes

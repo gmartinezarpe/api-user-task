@@ -1,20 +1,30 @@
 import { PrismaClient } from "@prisma/client";
 import { CreateTaskDTO, TaskDTO, UpdateTaskDTO } from "../dto/TaskDTO";
 
+
 const prisma = new PrismaClient()
 
 export default class TaskRepository {
 
     private userId: number
+   
+    
+  
 
     constructor(userId: number){
         this.userId = userId
+
+      
     }
+
+    
 
     public readonly findAll = async (): Promise<TaskDTO[]> => {
         const tasks: TaskDTO[] = await prisma.task.findMany({
             where: {
                 userId: this.userId
+               
+                          
             }
         })
         return tasks
@@ -25,6 +35,7 @@ export default class TaskRepository {
          where: {
              id,
              userId: this.userId
+             
          }   
         })
 

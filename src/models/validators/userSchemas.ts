@@ -5,6 +5,8 @@ export const loginSchema = Joi.object().keys({
   password: Joi.string().required(),
   firstName: Joi.string(),
   lastName: Joi.string(), 
+  admin:Joi.boolean()
+  
 })
 
 export const registerSchema = Joi.object().keys({
@@ -12,4 +14,5 @@ export const registerSchema = Joi.object().keys({
   password: Joi.string().required(),
   firstName: Joi.string(),
   lastName: Joi.string(),
+  
 })

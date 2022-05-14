@@ -12,11 +12,14 @@ export default class UserRepository {
       })
       return usersWithoutPassword
     }
+  
     
     public readonly findById = async (id: number): Promise<UserDTO | undefined> => {
       const user = await prisma.user.findUnique({
         where: {
-          id
+          id,
+          
+         
         }
       })
   
@@ -25,6 +28,10 @@ export default class UserRepository {
       const { password, ...userWithoutPassword } = user
       return userWithoutPassword
     }
+
+  
+
+    
 
     public readonly findByEmail = async (email: string): Promise<LoginUserDTO | undefined>  => {
         const user = await prisma.user.findUnique({
@@ -50,7 +57,9 @@ export default class UserRepository {
       public readonly update = async (id: number, user: UpdateUserDTO): Promise<void> => {
         await prisma.user.update({
           where: {
-            id
+            id,
+           
+            
           },
           data: user
         })

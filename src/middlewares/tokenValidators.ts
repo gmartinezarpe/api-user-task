@@ -10,7 +10,7 @@ export default function tokenValidator() {
       return
     }
 
-    const [  , token] = authHeader.split(' ')
+    const [,token] = authHeader.split(' ')
 
   
 

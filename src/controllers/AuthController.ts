@@ -2,8 +2,11 @@ import { Request, Response } from "express";
 import bcrypt from 'bcryptjs';
 import { generateToken } from "../lib/jwt";
 import UserRepository from "../models/repositories/UserRepository";
-import { CreateUserDTO } from "../models/dto/UserDTO";
+import { CreateUserDTO, UpdateUserDTO, UserDTO } from "../models/dto/UserDTO";
 import { loginSchema, registerSchema } from "../models/validators/userSchemas";
+
+
+
 
 export default class AuthController {
   public readonly login = async (req: Request, res: Response) => {
@@ -25,14 +28,23 @@ export default class AuthController {
         return
       }
   
-      const token = generateToken(UserFromDB)
-  
-      res.json({ token });
+        const token = generateToken(UserFromDB)
+        res.json({ token });
+
+
+
+     
+       
     } catch (error) {
       console.log(error.message)
       res.status(500).json({ message: 'Something went wrong' })
     }
+      
+   
   }
+
+
+
 
   public readonly register = async (req: Request, res: Response) => {
     const user = req.body as CreateUserDTO
@@ -59,4 +71,45 @@ export default class AuthController {
       res.status(500).json({ message: 'Something went wrong' })
     }
   }
+
+  public readonly findAll = async (_req: Request, res: Response) => {
+    
+    const repository = new UserRepository()
+    const users: UserDTO[] = await repository.findAll()
+   
+    res.json(users)
+  }
+
+
+  public readonly Update = async (_req: Request, res: Response) => {
+  
+
+    const { id } = _req.params 
+    const user = _req.body as UpdateUserDTO
+  
+    try{
+  
+        await loginSchema.validateAsync(user)
+  
+    }catch(error){
+  res.status(400).json({message: error.message})
+  return
+    }
+
+    if( user.admin == true){
+    
+      const repository = new UserRepository() 
+      await repository.update(parseInt(id), user)
+    
+      res.sendStatus(204)
+
+    }else{
+
+      res.json("no eres administrador")
+     
+    }
+
+  
+  }
+  
 }

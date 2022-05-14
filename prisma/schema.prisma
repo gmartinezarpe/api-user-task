@@ -27,6 +27,7 @@ model User {
   lastName  String  @db.VarChar(60)
   email     String   @unique@db.VarChar(60)
   password  String  @db.VarChar(250)
+  admin     Boolean @default(false)
   tasks     Task[]
 
   @@map("users")
