@@ -19,6 +19,7 @@ export default class UserRepository {
         where: {
           id,
           
+          
          
         }
       })
@@ -58,6 +59,8 @@ export default class UserRepository {
         await prisma.user.update({
           where: {
             id,
+           
+            
            
             
           },

@@ -62,6 +62,7 @@ return
     res.sendStatus(204)
 }
 
+
 public readonly delete = async (_req: Request, res: Response) => {
     const { id } = _req.params
     const user = _req.user as UserTokenPayload

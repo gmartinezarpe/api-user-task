@@ -17,6 +17,7 @@ export interface UserDTO extends BaseUserDTO {
 
 export interface CreateUserDTO extends BaseUserDTO {
   password: string
+
  
 }
 

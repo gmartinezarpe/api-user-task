@@ -4,6 +4,7 @@ import { generateToken } from "../lib/jwt";
 import UserRepository from "../models/repositories/UserRepository";
 import { CreateUserDTO, UpdateUserDTO, UserDTO } from "../models/dto/UserDTO";
 import { loginSchema, registerSchema } from "../models/validators/userSchemas";
+import { UserTokenPayload } from "../models/dto/UserDTO";
 
 
 
@@ -27,13 +28,14 @@ export default class AuthController {
         res.status(401).json({ error: 'Invalid credentials' })
         return
       }
-  
+
+
         const token = generateToken(UserFromDB)
         res.json({ token });
 
-
-
-     
+  
+        
+        
        
     } catch (error) {
       console.log(error.message)
@@ -71,14 +73,19 @@ export default class AuthController {
       res.status(500).json({ message: 'Something went wrong' })
     }
   }
+ 
+
 
   public readonly findAll = async (_req: Request, res: Response) => {
+
+    
     
     const repository = new UserRepository()
     const users: UserDTO[] = await repository.findAll()
    
     res.json(users)
   }
+  
 
 
   public readonly Update = async (_req: Request, res: Response) => {
@@ -96,8 +103,10 @@ export default class AuthController {
   return
     }
 
-    if( user.admin == true){
-    
+    if(user.admin == true){
+      
+      const user = _req.user as UserTokenPayload
+      
       const repository = new UserRepository() 
       await repository.update(parseInt(id), user)
     
@@ -107,6 +116,7 @@ export default class AuthController {
 
       res.json("no eres administrador")
      
+      
     }
 
   
